@@ -2,16 +2,20 @@
   "name": "crud-cadastro-clientes",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "nodemon": "^3.1.4"
+    "i": "^0.3.7",
+    "mongoose": "^8.5.3",
+    "nodemon": "^3.1.4",
+    "npm": "^10.8.2"
   }
 }
