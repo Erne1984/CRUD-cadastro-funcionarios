@@ -10,5 +10,6 @@ routes.get("/", (req, res) => {
 routes.get("/getFuncionarios", FuncionarioController.getFuncionarios);
 routes.post("/createFuncionario", FuncionarioController.createFuncionario);
 routes.put("/updateFuncionario", FuncionarioController.updateFuncionario);
+routes.delete("/deleteFuncionario", FuncionarioController.deleteFuncionario);
 
 module.exports = routes; 

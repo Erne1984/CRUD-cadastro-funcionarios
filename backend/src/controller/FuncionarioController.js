@@ -77,4 +77,20 @@ const updateFuncionario = async (req, res) => {
     }
 }
 
-module.exports = { createFuncionario, getFuncionarios, updateFuncionario }
+const deleteFuncionario = async (req, res) => {
+    try {
+        const email = req.body.email;
+
+        const result = await Funcionario.deleteOne({ email });
+
+        if (result.deletedCount === 1) {
+            res.send(204).json({ message: "Funcionário deletado com sucesso" });
+        } else {
+            res.status(404).json({ message: "Funcionário não encontrado" });
+        }
+    } catch (err) {
+        res.status(404).json({ message: `Erro ao deletar o funcionário: ${err}` });
+    }
+}
+
+module.exports = { createFuncionario, getFuncionarios, updateFuncionario, deleteFuncionario };
