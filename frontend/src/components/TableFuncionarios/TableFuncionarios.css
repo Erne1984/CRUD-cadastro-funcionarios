@@ -1,2 +1,25 @@
+table thead th {
+    padding: 0 1rem;
+    text-align: left;
+}
 
+table tbody tr td {
+    padding: 0 1rem;
+    text-align: left;
+}
 
+.icons {
+    display: flex;
+    justify-content: space-between;
+    transition: 250ms;
+}
+
+.edit-icon:hover {
+    color: #3F51B5;
+    cursor: pointer;
+}
+
+.delete-icon:hover {
+    color: #FA3F19;
+    cursor: pointer;
+}
