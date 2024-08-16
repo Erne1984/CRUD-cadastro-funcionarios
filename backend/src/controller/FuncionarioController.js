@@ -8,7 +8,7 @@ const createFuncionario = async (req, res) => {
 
     try {
 
-        const { nome, cpf, funcao, dataAdmissao, setor, salario } = req.body;
+        const { nome, cpf, funcao, setor, dataAdmissao, salario } = req.body;
 
         const existingEmploying = await Funcionario.findOne({ cpf }).session(session);
         if (existingEmploying) {
@@ -85,7 +85,7 @@ const deleteFuncionario = async (req, res) => {
         const result = await Funcionario.deleteOne({ cpf });
 
         if (result.deletedCount === 1) {
-            res.sendStatus(204); 
+            res.sendStatus(204);
         } else {
             res.status(404).json({ message: "Funcionário não encontrado" });
         }
