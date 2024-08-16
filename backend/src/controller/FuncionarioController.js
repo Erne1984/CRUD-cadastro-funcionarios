@@ -1,10 +1,21 @@
 const Funcionario = require("../models/Funcionario");
+const mongoose = require("mongoose")
 
 
 const createFuncionario = async (req, res) => {
+    const session = await mongoose.startSession();
+    session.startTransaction();
+
     try {
 
         const { nome, funcao, dataNascimento, email, salario } = req.body;
+
+        const existingEmploying = await Funcionario.findOne({ email }).session(session);
+        if (existingEmploying) {
+            await session.abortTransaction();
+            session.endSession();
+            return res.status(409).send("Email já está em uso.");
+        }
 
         const newFuncionario = new Funcionario({
             nome,
@@ -16,9 +27,17 @@ const createFuncionario = async (req, res) => {
 
         await newFuncionario.save();
 
+        await session.commitTransaction();
+        session.endSession();
+
         res.status(201).send(newFuncionario);
 
     } catch (err) {
+        if (session.inTransaction()) {
+            await session.abortTransaction();
+        }
+        session.endSession();
+
         res.status(404)
         console.log(`Erro ao criar funcionário ${err}`);
     }
@@ -36,5 +55,26 @@ const getFuncionarios = async (req, res) => {
     }
 }
 
+const updateFuncionario = async (req, res) => {
+    try {
+        const updates = req.body;
 
-module.exports = { createFuncionario, getFuncionarios }
+        const email = req.body.email;
+
+        const result = await Funcionario.updateOne({ email },
+            {
+                $set: updates
+            }
+        );
+
+        if (result.modifiedCount === 0) {
+            res.status(404).json({ message: "Funcionário não encontrado ou dados já estão atualizados" });
+        } else {
+            res.status(200).json({ message: "Dados do funcionário atualizados com sucesso!" });
+        }
+    } catch (err) {
+        res.status(404).json({ message: `Erro ao atualizar funcionário: ${err}` });
+    }
+}
+
+module.exports = { createFuncionario, getFuncionarios, updateFuncionario }

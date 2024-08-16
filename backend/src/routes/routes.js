@@ -9,5 +9,6 @@ routes.get("/", (req, res) => {
  
 routes.get("/getFuncionarios", FuncionarioController.getFuncionarios);
 routes.post("/createFuncionario", FuncionarioController.createFuncionario);
+routes.put("/updateFuncionario", FuncionarioController.updateFuncionario);
 
 module.exports = routes; 
