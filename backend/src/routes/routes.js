@@ -7,6 +7,7 @@ routes.get("/", (req, res) => {
     res.send("Olá Mundo");
 });
  
+routes.get("/getFuncionarios", FuncionarioController.getFuncionarios);
 routes.post("/createFuncionario", FuncionarioController.createFuncionario);
 
 module.exports = routes; 

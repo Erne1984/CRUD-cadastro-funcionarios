@@ -9,7 +9,7 @@ const createFuncionario = async (req, res) => {
         const newFuncionario = new Funcionario({
             nome,
             funcao,
-            dataNascimento: new Date(dataNascimento), 
+            dataNascimento: new Date(dataNascimento),
             email,
             salario
         })
@@ -19,8 +19,22 @@ const createFuncionario = async (req, res) => {
         res.status(201).send(newFuncionario);
 
     } catch (err) {
+        res.status(404)
         console.log(`Erro ao criar funcionário ${err}`);
     }
 }
 
-module.exports = { createFuncionario }
+const getFuncionarios = async (req, res) => {
+    try {
+
+        const functionarioList = await Funcionario.find();
+
+        res.status(200).json(functionarioList);
+    } catch (err) {
+        res.status(404).json({ message: `Erro ao buscar funcionários: ${err}` });
+        console.log(`Erro ao buscar funcionários: ${err}`);
+    }
+}
+
+
+module.exports = { createFuncionario, getFuncionarios }
