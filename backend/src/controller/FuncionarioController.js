@@ -8,20 +8,21 @@ const createFuncionario = async (req, res) => {
 
     try {
 
-        const { nome, funcao, dataNascimento, email, salario } = req.body;
+        const { nome, cpf, funcao, dataAdmissao, setor, salario } = req.body;
 
-        const existingEmploying = await Funcionario.findOne({ email }).session(session);
+        const existingEmploying = await Funcionario.findOne({ cpf }).session(session);
         if (existingEmploying) {
             await session.abortTransaction();
             session.endSession();
-            return res.status(409).send("Email já está em uso.");
+            return res.status(409).send("CPF já está em uso.");
         }
 
         const newFuncionario = new Funcionario({
             nome,
+            cpf,
             funcao,
-            dataNascimento: new Date(dataNascimento),
-            email,
+            dataAdmissao: new Date(dataAdmissao),
+            setor,
             salario
         })
 
@@ -59,9 +60,9 @@ const updateFuncionario = async (req, res) => {
     try {
         const updates = req.body;
 
-        const email = req.body.email;
+        const cpf = req.body.cpf;
 
-        const result = await Funcionario.updateOne({ email },
+        const result = await Funcionario.updateOne({ cpf },
             {
                 $set: updates
             }
@@ -79,12 +80,12 @@ const updateFuncionario = async (req, res) => {
 
 const deleteFuncionario = async (req, res) => {
     try {
-        const email = req.body.email;
+        const cpf = req.body.cpf;
 
-        const result = await Funcionario.deleteOne({ email });
+        const result = await Funcionario.deleteOne({ cpf });
 
         if (result.deletedCount === 1) {
-            res.send(204).json({ message: "Funcionário deletado com sucesso" });
+            res.sendStatus(204); 
         } else {
             res.status(404).json({ message: "Funcionário não encontrado" });
         }

@@ -2,9 +2,10 @@ const mongoose = require('mongoose');
 
 const funcionarioSchema = new mongoose.Schema({
     nome: String, 
+    cpf: String,
     funcao: String,
-    dataNascimento: Date, 
-    email: String, 
+    dataAdmissao: Date,
+    setor: String,
     salario: Number
 })
 
