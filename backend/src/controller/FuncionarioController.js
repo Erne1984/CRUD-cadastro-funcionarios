@@ -7,11 +7,18 @@ const createFuncionario = async (req, res) => {
     session.startTransaction();
 
     try {
-
         const { nome, cpf, funcao, setor, dataAdmissao, salario } = req.body;
 
-        const existingEmploying = await Funcionario.findOne({ cpf }).session(session);
-        if (existingEmploying) {
+        const dataAdmissaoParsed = new Date(dataAdmissao);
+        
+        if (isNaN(dataAdmissaoParsed.getTime())) {
+            await session.abortTransaction();
+            session.endSession();
+            return res.status(400).send("Data de Admissão inválida.");
+        }
+
+        const existingEmployee = await Funcionario.findOne({ cpf }).session(session);
+        if (existingEmployee) {
             await session.abortTransaction();
             session.endSession();
             return res.status(409).send("CPF já está em uso.");
@@ -21,10 +28,10 @@ const createFuncionario = async (req, res) => {
             nome,
             cpf,
             funcao,
-            dataAdmissao: new Date(dataAdmissao),
+            dataAdmissao: dataAdmissaoParsed,  
             setor,
             salario
-        })
+        });
 
         await newFuncionario.save();
 
@@ -39,10 +46,10 @@ const createFuncionario = async (req, res) => {
         }
         session.endSession();
 
-        res.status(404)
-        console.log(`Erro ao criar funcionário ${err}`);
+        res.status(500).json({ message: `Erro ao criar funcionário: ${err.message}` });
     }
-}
+};
+
 
 const getFuncionarios = async (req, res) => {
     try {

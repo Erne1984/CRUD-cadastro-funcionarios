@@ -1,0 +1,42 @@
+dialog {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: none;
+    padding: 1.5rem;
+    min-width: 400px;
+}
+
+dialog::backdrop {
+    background-color: rgba(18, 18, 18, 0.8);
+}
+
+h3{
+    padding-bottom: 0.5rem;
+}
+
+.input-box{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+}
+
+.input-box input{
+    display: flex;
+    flex-direction: column;
+    padding-top: 0.5rem;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #000;
+    transition: box-shadow 250ms;
+}
+
+.input-box input:focus{
+    border-bottom: 2px solid #000;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+}
+
+.btns-modal{
+    display: flex;
+    justify-content: right;
+}

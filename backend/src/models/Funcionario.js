@@ -4,7 +4,7 @@ const funcionarioSchema = new mongoose.Schema({
     nome: String, 
     cpf: String,
     funcao: String,
-    dataAdmissao: Date,
+    dataAdmissao: { type: Date, required: true },
     setor: String,
     salario: Number
 })
