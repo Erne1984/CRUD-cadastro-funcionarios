@@ -58,7 +58,7 @@ export default function ModalCreate({ modalShow, onClose }: ModalCreateProps) {
     };
 
     return (
-        <dialog ref={dialogRef}>
+        <dialog className="modal-create" ref={dialogRef}>
             <h3>Cadastrar Funcionário</h3>
 
             <form onSubmit={handleSubmit}>

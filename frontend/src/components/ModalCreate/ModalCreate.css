@@ -1,4 +1,4 @@
-dialog {
+.modal-create {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -11,7 +11,7 @@ dialog {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-dialog::backdrop {
+.modal-create::backdrop {
     background-color: rgba(18, 18, 18, 0.8);
 }
 

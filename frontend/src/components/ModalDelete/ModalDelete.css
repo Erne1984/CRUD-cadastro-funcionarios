@@ -1,0 +1,12 @@
+.modal-delete{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: none;
+    padding: 1.5rem;
+    min-width: 400px;
+    border-radius: 4px;
+    background-color: #1A1A1A;
+    color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}

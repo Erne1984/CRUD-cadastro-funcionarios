@@ -1,34 +1,16 @@
-import { useEffect, useState } from 'react';
 import './TableFuncionarios.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+import Funcionario from '../../models/Funcionario';
 
-interface Funcionario {
-    nome: string;
-    cpf: string;
-    funcao: string;
-    dataAdmissao: string;
-    setor: string;
-    salario: number;
+interface TableFuncionariosInterface{
+    funcionarios: Funcionario[], 
+    openDeleteModal: () => void
 }
 
-export default function TableFuncionarios() {
-    const [funcionarios, setFuncionarios] = useState<Funcionario[]>([]);
+export default function TableFuncionarios(props: TableFuncionariosInterface) {
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const res = await fetch("http://localhost:8080/getFuncionarios");
-                const funcionarioList = await res.json();
-                setFuncionarios(funcionarioList);
-            } catch (err) {
-                console.log(`Erro ao buscar funcionários: ${err}`);
-            }
-        };
-
-        fetchData();
-    }, []);
 
     return (
         <table>
@@ -43,7 +25,7 @@ export default function TableFuncionarios() {
                 </tr>
             </thead>
             <tbody>
-                {funcionarios.map((funcionario) => (
+                {props.funcionarios.map((funcionario) => (
                     <tr key={funcionario.cpf}>
                         <td>{funcionario.nome}</td>
                         <td>{funcionario.cpf}</td>
@@ -52,7 +34,7 @@ export default function TableFuncionarios() {
                         <td>{new Date(funcionario.dataAdmissao).toLocaleDateString()}</td>
                         <td className='icons'>
                             <FontAwesomeIcon className='edit-icon' icon={faPen} />
-                            <FontAwesomeIcon className='delete-icon' icon={faTrash} />
+                            <FontAwesomeIcon className='delete-icon' icon={faTrash} onClick={props.openDeleteModal}/>
                         </td>
                     </tr>
                 ))}
