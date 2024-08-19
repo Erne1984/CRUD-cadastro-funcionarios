@@ -85,7 +85,7 @@ export default function ModalCreate({ modalShow, onClose }: ModalCreateProps) {
 
                 <div className="input-box">
                     <label>Data de Admissão</label>
-                    <input type="date" name="dataAdmissao" required />
+                    <input className="date" type="date" name="dataAdmissao" required />
                 </div>
 
                 <div className="input-box">
@@ -94,8 +94,8 @@ export default function ModalCreate({ modalShow, onClose }: ModalCreateProps) {
                 </div>
 
                 <div className="btns-modal">
-                    <button type="submit">Criar</button>
-                    <button type="button" onClick={onClose}>Fechar</button>
+                    <button type="submit" className="btn-confirm">Criar</button>
+                    <button type="button" className="btn-delete" onClick={onClose}>Fechar</button>
                 </div>
 
             </form>

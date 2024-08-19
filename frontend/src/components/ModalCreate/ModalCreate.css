@@ -5,38 +5,74 @@ dialog {
     border: none;
     padding: 1.5rem;
     min-width: 400px;
+    border-radius: 4px;
+    background-color: #1A1A1A;
+    color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 dialog::backdrop {
     background-color: rgba(18, 18, 18, 0.8);
 }
 
-h3{
+h3 {
     padding-bottom: 0.5rem;
 }
 
-.input-box{
+.input-box {
     display: flex;
     flex-direction: column;
     padding: 10px 0;
 }
 
-.input-box input{
+.input-box input {
     display: flex;
     flex-direction: column;
     padding-top: 0.5rem;
     border: none;
     outline: none;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #FF4D5A;
+    background-color: #1A1A1A;
+    color: #fff;
+    font-weight: 1.1rem;
     transition: box-shadow 250ms;
 }
 
-.input-box input:focus{
-    border-bottom: 2px solid #000;
+.input-box input:focus {
+    border-bottom: 2px solid #FF4D5A;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
 }
 
-.btns-modal{
+.input-box .date {
+    color: #fff;
+}
+
+.btns-modal {
     display: flex;
     justify-content: right;
+    padding-top: 1.3rem;
+    gap: 0.8rem;
+}
+
+.btns-modal button {
+    border: none;
+    border: none;
+    color: #FFF;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 250ms;
+}
+
+.btns-modal button:hover{
+    opacity: 0.8;
+}
+
+.btns-modal .btn-confirm {
+    background: #1CC88A;
+}
+
+.btns-modal .btn-delete {
+    background: #E74A3B;
 }

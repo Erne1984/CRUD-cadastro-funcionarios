@@ -2,4 +2,23 @@ header{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+header button{
+    border: none;
+    border: 1px solid #FF4D5A;
+    background: none;
+    color: #FF4D5A;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 250ms;
+}
+
+header button:hover{
+    background-color: #ff4d5a;
+    color: #fff;
 }

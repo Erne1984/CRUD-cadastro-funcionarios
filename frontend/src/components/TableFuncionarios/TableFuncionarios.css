@@ -3,13 +3,25 @@ table{
 }
 
 table thead th {
-    padding: 0 1rem;
-    text-align: left;
+    margin: 0 1rem;
+    padding-bottom: 1rem;
+    text-align: center;
+    color: #FF4D5A;
+}
+
+table tbody tr{
+    cursor: pointer;
+    transition: 250ms;
+}
+
+table tbody tr:hover{
+    opacity: 0.6;
 }
 
 table tbody tr td {
+    margin: 10px 0;
     padding: 0 1rem;
-    text-align: left;
+    text-align: center;
 }
 
 .icons {
