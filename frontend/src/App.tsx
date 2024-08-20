@@ -6,12 +6,14 @@ import ModalDelete from './components/ModalDelete/ModalDelete';
 import Funcionario from './models/Funcionario';
 
 import { useEffect, useState } from 'react';
+import ModalUpdate from './components/ModalUpdate/ModalUpdate';
 
 function App() {
   const [funcionarios, setFuncionarios] = useState<Funcionario[]>([]);
   const [funcionarioSelecionado, setFuncionarioSelecionado] = useState<Funcionario | null>(null);
   const [openModalCreate, setOpenModalCreate] = useState(false);
   const [openModalDelete, setOpenModalDelete] = useState(false);
+  const [openModalEdit, setOpenModalUpdate] = useState(false);
 
 
   const handleClickFuncionario = (funcionario: Funcionario) => {
@@ -23,6 +25,9 @@ function App() {
 
   const onOpenModalDelete = () => setOpenModalDelete(true);
   const onCloseModalDelete = () => setOpenModalDelete(false);
+
+  const onOpenModalUpdate = () => setOpenModalUpdate(true);
+  const onCloseModalUpdate = () => setOpenModalUpdate(false);
 
 
   useEffect(() => {
@@ -45,13 +50,15 @@ function App() {
       <main>
 
         <Header openModal={onOpenModalCreate} />
-        <TableFuncionarios funcionarios={funcionarios} openDeleteModal={onOpenModalDelete} handleClickFuncionario={handleClickFuncionario} />
+        <TableFuncionarios funcionarios={funcionarios} openUpdateModal={onOpenModalUpdate} openDeleteModal={onOpenModalDelete} handleClickFuncionario={handleClickFuncionario} />
 
       </main>
 
       <ModalCreate modalShow={openModalCreate} onClose={onCloseModalCreate} />
 
       <ModalDelete modalShow={openModalDelete} onCloseDelete={onCloseModalDelete} funcionario={funcionarioSelecionado} />
+
+      <ModalUpdate modalState={openModalEdit}  onCloseUpdate={onCloseModalUpdate} funcionario={funcionarioSelecionado}/>
 
     </>
   )

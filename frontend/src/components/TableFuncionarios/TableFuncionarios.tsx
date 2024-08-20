@@ -8,13 +8,14 @@ import EmptyFuncionario from '../EmptyFuncionarios/EmptyFuncionarios';
 interface TableFuncionariosInterface {
     funcionarios: Funcionario[],
     openDeleteModal: () => void,
+    openUpdateModal: () => void,
     handleClickFuncionario: (funcionario: Funcionario) => void,
 }
 
 export default function TableFuncionarios(props: TableFuncionariosInterface) {
 
-    if(props.funcionarios.length === 0){
-        return <EmptyFuncionario/>
+    if (props.funcionarios.length === 0) {
+        return <EmptyFuncionario />
     }
 
     return (
@@ -25,6 +26,7 @@ export default function TableFuncionarios(props: TableFuncionariosInterface) {
                     <th>CPF</th>
                     <th>Função</th>
                     <th>Setor</th>
+                    <th>Salário</th>
                     <th>Data de Admissão</th>
                     <th>Ações</th>
                 </tr>
@@ -36,11 +38,15 @@ export default function TableFuncionarios(props: TableFuncionariosInterface) {
                         <td>{funcionario.cpf}</td>
                         <td>{funcionario.funcao}</td>
                         <td>{funcionario.setor}</td>
+                        <td>R$ {funcionario.salario}</td>
                         <td>{new Date(funcionario.dataAdmissao).toLocaleDateString()}</td>
                         <td className='icons'>
-                            <FontAwesomeIcon className='edit-icon' icon={faPen} />
+                            <FontAwesomeIcon className='edit-icon' icon={faPen}
+                                onClick={() => { props.openUpdateModal(); props.handleClickFuncionario(funcionario); }}
+                            />
                             <FontAwesomeIcon className='delete-icon' icon={faTrash}
-                                onClick={() => { props.openDeleteModal(); props.handleClickFuncionario(funcionario); }} />
+                                onClick={() => { props.openDeleteModal(); props.handleClickFuncionario(funcionario); }}
+                            />
                         </td>
                     </tr>
                 ))}
