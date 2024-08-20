@@ -1,4 +1,5 @@
 export default interface Funcionario {
+    _id: string,
     nome: string;
     cpf: string;
     funcao: string;

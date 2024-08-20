@@ -4,9 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Funcionario from '../../models/Funcionario';
 
-interface TableFuncionariosInterface{
-    funcionarios: Funcionario[], 
-    openDeleteModal: () => void
+interface TableFuncionariosInterface {
+    funcionarios: Funcionario[],
+    openDeleteModal: () => void,
+    handleClickFuncionario: (funcionario: Funcionario) => void,
 }
 
 export default function TableFuncionarios(props: TableFuncionariosInterface) {
@@ -34,7 +35,8 @@ export default function TableFuncionarios(props: TableFuncionariosInterface) {
                         <td>{new Date(funcionario.dataAdmissao).toLocaleDateString()}</td>
                         <td className='icons'>
                             <FontAwesomeIcon className='edit-icon' icon={faPen} />
-                            <FontAwesomeIcon className='delete-icon' icon={faTrash} onClick={props.openDeleteModal}/>
+                            <FontAwesomeIcon className='delete-icon' icon={faTrash}
+                                onClick={() => { props.openDeleteModal(); props.handleClickFuncionario(funcionario); }} />
                         </td>
                     </tr>
                 ))}

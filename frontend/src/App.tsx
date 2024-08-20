@@ -9,9 +9,14 @@ import { useEffect, useState } from 'react';
 
 function App() {
   const [funcionarios, setFuncionarios] = useState<Funcionario[]>([]);
+  const [funcionarioSelecionado, setFuncionarioSelecionado] = useState<Funcionario | null>(null);
   const [openModalCreate, setOpenModalCreate] = useState(false);
   const [openModalDelete, setOpenModalDelete] = useState(false);
 
+
+  const handleClickFuncionario = (funcionario: Funcionario) => {
+    setFuncionarioSelecionado(funcionario)
+  }
 
   const onOpenModalCreate = () => setOpenModalCreate(true);
   const onCloseModalCreate = () => setOpenModalCreate(false);
@@ -40,13 +45,13 @@ function App() {
       <main>
 
         <Header openModal={onOpenModalCreate} />
-        <TableFuncionarios funcionarios={funcionarios} openDeleteModal={onOpenModalDelete} />
+        <TableFuncionarios funcionarios={funcionarios} openDeleteModal={onOpenModalDelete} handleClickFuncionario={handleClickFuncionario} />
 
       </main>
 
       <ModalCreate modalShow={openModalCreate} onClose={onCloseModalCreate} />
 
-      <ModalDelete  modalShow={openModalDelete} onCloseDelete={onCloseModalDelete} />
+      <ModalDelete modalShow={openModalDelete} onCloseDelete={onCloseModalDelete} funcionario={funcionarioSelecionado} />
 
     </>
   )
