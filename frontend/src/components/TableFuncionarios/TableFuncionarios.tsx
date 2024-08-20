@@ -3,6 +3,7 @@ import './TableFuncionarios.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Funcionario from '../../models/Funcionario';
+import EmptyFuncionario from '../EmptyFuncionarios/EmptyFuncionarios';
 
 interface TableFuncionariosInterface {
     funcionarios: Funcionario[],
@@ -12,6 +13,9 @@ interface TableFuncionariosInterface {
 
 export default function TableFuncionarios(props: TableFuncionariosInterface) {
 
+    if(props.funcionarios.length === 0){
+        return <EmptyFuncionario/>
+    }
 
     return (
         <table>
