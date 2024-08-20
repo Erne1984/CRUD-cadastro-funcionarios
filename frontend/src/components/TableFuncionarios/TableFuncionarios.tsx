@@ -18,6 +18,11 @@ export default function TableFuncionarios(props: TableFuncionariosInterface) {
         return <EmptyFuncionario />
     }
 
+    function formatCPF(cpf: string): string {
+        const onlyNumbers = cpf.replace(/\D/g, '');
+        return onlyNumbers.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+    }
+
     return (
         <table>
             <thead>
@@ -35,7 +40,7 @@ export default function TableFuncionarios(props: TableFuncionariosInterface) {
                 {props.funcionarios.map((funcionario) => (
                     <tr key={funcionario.cpf}>
                         <td>{funcionario.nome}</td>
-                        <td>{funcionario.cpf}</td>
+                        <td>{formatCPF(funcionario.cpf)}</td>
                         <td>{funcionario.funcao}</td>
                         <td>{funcionario.setor}</td>
                         <td>R$ {funcionario.salario}</td>

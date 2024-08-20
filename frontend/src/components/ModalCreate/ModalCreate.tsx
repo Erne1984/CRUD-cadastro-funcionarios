@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-
 import './ModalCreate.css';
 
 interface ModalCreateProps {
@@ -30,11 +29,21 @@ export default function ModalCreate({ modalShow, onClose }: ModalCreateProps) {
         };
     }, [modalShow, onClose]);
 
+    const validateCPF = (cpf: string) => {
+        const cpfRegex = /^([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})$/;
+        return cpfRegex.test(cpf);
+    };
+
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const formData = new FormData(event.currentTarget);
         const data = Object.fromEntries(formData.entries());
+
+        if (!validateCPF(data.cpf as string)) {
+            alert('CPF inválido. Por favor, insira um CPF válido.');
+            return;
+        }
 
         try {
             const response = await fetch('http://localhost:8080/createFuncionario', {
