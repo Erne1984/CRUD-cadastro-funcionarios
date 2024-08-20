@@ -39,17 +39,17 @@ export default function TableFuncionarios(props: TableFuncionariosInterface) {
             <tbody>
                 {props.funcionarios.map((funcionario) => (
                     <tr key={funcionario.cpf}>
-                        <td>{funcionario.nome}</td>
-                        <td>{formatCPF(funcionario.cpf)}</td>
-                        <td>{funcionario.funcao}</td>
-                        <td>{funcionario.setor}</td>
-                        <td>R$ {funcionario.salario}</td>
-                        <td>{new Date(funcionario.dataAdmissao).toLocaleDateString()}</td>
-                        <td className='icons'>
-                            <FontAwesomeIcon className='edit-icon' icon={faPen}
+                        <td data-cell="Nome">{funcionario.nome}</td>
+                        <td data-cell="CPF">{formatCPF(funcionario.cpf)}</td>
+                        <td data-cell="Função">{funcionario.funcao}</td>
+                        <td data-cell="Setor">{funcionario.setor}</td>
+                        <td data-cell="Salário">R$ {funcionario.salario}</td>
+                        <td data-cell="Data de Admissão">{new Date(funcionario.dataAdmissao).toLocaleDateString()}</td>
+                        <td data-cell="Ações" className='icons'>
+                            <FontAwesomeIcon className='edit-icon icon' icon={faPen}
                                 onClick={() => { props.openUpdateModal(); props.handleClickFuncionario(funcionario); }}
                             />
-                            <FontAwesomeIcon className='delete-icon' icon={faTrash}
+                            <FontAwesomeIcon className='delete-icon icon' icon={faTrash}
                                 onClick={() => { props.openDeleteModal(); props.handleClickFuncionario(funcionario); }}
                             />
                         </td>

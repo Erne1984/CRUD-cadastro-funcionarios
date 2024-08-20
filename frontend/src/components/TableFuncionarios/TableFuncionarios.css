@@ -1,20 +1,28 @@
-table{
+table {
     width: 100%;
+    overflow-x: scroll;
+    border-collapse: collapse;
 }
 
 table thead th {
     margin: 0 1rem;
-    padding-bottom: 1rem;
+    padding: 1rem 0;
     text-align: center;
     color: #FF4D5A;
+    background-color: rgb(24, 24, 24, 0.8);
 }
 
-table tbody tr{
+table tbody tr {
+    background-color: rgb(50, 50, 50);
     cursor: pointer;
     transition: 250ms;
 }
 
-table tbody tr:hover{
+table tbody tr:nth-of-type(2n){
+    background-color: rgba(50, 50, 50, 0.5);
+}
+
+table tbody tr:hover {
     opacity: 0.6;
 }
 
@@ -25,9 +33,12 @@ table tbody tr td {
 }
 
 .icons {
+    position: relative;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     transition: 250ms;
+    z-index: 2;
 }
 
 .edit-icon:hover {
@@ -38,4 +49,30 @@ table tbody tr td {
 .delete-icon:hover {
     color: #FA3F19;
     cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+
+    th{
+        display: none;
+    }
+
+    td{
+        display: block;
+    }
+
+    td::before{
+        content: attr(data-cell) ":";
+        font-weight: bold;
+        margin-right: 10px;
+    }
+
+    .icons{
+        justify-content: center;
+        margin: 3px;
+    }
+
+    .icons .icon{
+        margin: 0 3px;
+    }
 }

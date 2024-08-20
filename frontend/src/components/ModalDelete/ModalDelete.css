@@ -10,3 +10,7 @@
     color: #fff;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+
+.modal-delete::backdrop {
+    background-color: rgba(18, 18, 18, 0.8);
+}
