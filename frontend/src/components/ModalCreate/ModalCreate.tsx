@@ -46,7 +46,7 @@ export default function ModalCreate({ modalShow, onClose }: ModalCreateProps) {
         }
 
         try {
-            const response = await fetch('http://localhost:8080/createFuncionario', {
+            const response = await fetch('https://crud-cadastro-funcionarios.onrender.com/createFuncionario', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

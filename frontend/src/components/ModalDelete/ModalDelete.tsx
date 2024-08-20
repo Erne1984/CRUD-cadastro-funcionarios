@@ -43,7 +43,7 @@ export default function ModalDelete(props: ModalDelete) {
         const data = { cpf: props.funcionario!.cpf };
     
         try {
-            const response = await fetch('http://localhost:8080/deleteFuncionario', {
+            const response = await fetch('https://crud-cadastro-funcionarios.onrender.com/deleteFuncionario', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'

@@ -33,7 +33,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:8080/getFuncionarios");
+        const res = await fetch("https://crud-cadastro-funcionarios.onrender.com/getFuncionarios");
         const funcionarioList = await res.json();
         setFuncionarios(funcionarioList);
       } catch (err) {
